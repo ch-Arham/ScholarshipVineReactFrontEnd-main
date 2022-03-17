@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { SearchDropdown, MaximizeScreen, AppsDropdown, LanguageDropdown, NotificationDropdown, ProfileDropdown} from "./TopBarItems";
 // images
-import profilePic from '../../assets/images/users/avatar-1.jpg';
+import profilePic from '../../assets/images/SV/logo-sm.png';
 import avatar4 from '../../assets/images/users/avatar-4.jpg';
 import SVlogoLight from '../../assets/images/SV/logo-light.png';
 import logoSm from '../../assets/images/SV/logo-sm.png';
@@ -136,9 +136,9 @@ const TopBar = ({onToggleMenu, onToggleMobMenu}) => {
                         <li className="dropdown d-none d-lg-inline-block topbar-dropdown">
                             <LanguageDropdown />
                         </li>
-                        <li className="dropdown notification-list topbar-dropdown d-inline-block">
+                        {/* <li className="dropdown notification-list topbar-dropdown d-inline-block">
                             <NotificationDropdown notifications={Notifications} />
-                        </li>
+                        </li> */}
                         <li className="dropdown notification-list topbar-dropdown d-inline-block">
                             <ProfileDropdown profilePic={profilePic} menuItems={ProfileMenus} username={'Nik Patel'} />
                         </li>
