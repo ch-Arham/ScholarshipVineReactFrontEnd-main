@@ -1,0 +1,30 @@
+// Topbar
+.topbar {    
+    height: 70px;
+    background-color: #fff;
+    border-bottom: 1px solid #e2e7f1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.logo-box {
+    background: #fff !important;
+    border-right: 1px solid #e2e7f1 !important;
+    padding: 0 !important;
+}
+.dropdown-lg {
+    width: 280px !important;
+}
+
+.show {
+    display: block !important;
+}
+.hide {
+    display: none !important;   
+}
+.hidemenu {
+    transform: translateX(-180px);
+}
+
