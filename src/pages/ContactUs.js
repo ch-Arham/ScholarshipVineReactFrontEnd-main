@@ -83,20 +83,17 @@ const ContactUs = () => {
               <Link to="/dashboard">Grants Opportunity List</Link>
             </li>
             <li className="mb-2">
-              <Link to="#">About us</Link>
+              <Link to="/contactus">Contact us</Link>
             </li>
             <li className="mb-2">
-              <Link to="#">Contact us</Link>
-            </li>
-            <li className="mb-2">
-              <Link to="#">Logout</Link>
+              <Link to="/">Main Page</Link>
             </li>
           </ul>
         </div>
         <div ref={contentpage} className="content-page">
           <div className="content">
             {/* <Container fluid> */}
-            <Form  ref={form} className="p-5" onSubmit={handleSubmit}>
+            <Form ref={form} className="p-5" onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control

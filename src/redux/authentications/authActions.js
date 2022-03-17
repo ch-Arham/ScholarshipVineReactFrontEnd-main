@@ -28,18 +28,7 @@ export const register = async (dispatch, user) => {
     dispatch(loginFail());
   }
 };
-export const getUser = async (dispatch, user) => {
-  dispatch(loginPending());
-  try {
-    const response = await axios.get(
-      "https://localhost:5000/api/auth/getuser",
-      user
-    );
-    dispatch(loginSuccess(response));
-  } catch (error) {
-    dispatch(loginFail());
-  }
-};
+
 
 export const logout = async (dispatch) => {
   dispatch(loginPending());

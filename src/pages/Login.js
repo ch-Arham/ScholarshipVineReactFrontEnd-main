@@ -22,7 +22,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (isAuth) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [isAuth, navigate]);
   return (
@@ -146,13 +146,16 @@ const Login = () => {
               </div>
               <Row>
                 <Col xs={12} className="text-center mb-4">
-                  <Link to="#" className="btn btn-white mb-2 mb-sm-0 me-1">
+                  <Link
+                    to="/signup"
+                    className="btn btn-white mb-2 mb-sm-0 me-1"
+                  >
                     <i className="uil uil-google icon-google me-2"></i>
-                    With Google
+                    Create and Account
                   </Link>
                   <Link to="#" className="btn btn-white mb-2 mb-sm-0">
                     <i className="uil uil-facebook me-2 icon-fb"></i>
-                    With Facebook
+                    Forgot Password
                   </Link>
                 </Col>
               </Row>

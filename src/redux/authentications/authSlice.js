@@ -5,6 +5,7 @@ const initialState = {
   isAuth: false,
   error: "",
   authToken: "",
+  
 };
 
 const loginSlice = createSlice({

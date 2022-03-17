@@ -7,10 +7,11 @@ import { logout } from "../redux/authentications/authActions";
 import SVlogoLight from "../assets/images/SV/logo-light.png";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useSelector((state) => state.auth);
   const handleClick = () => {
-      dispatch(logout());
+    logout(dispatch);
     navigate("/login");
   };
   // on scroll add navbar class
@@ -93,7 +94,7 @@ const NavBar = () => {
               <Nav.Item as="li" className="mx-lg-1">
                 {isAuth ? (
                   <Nav.Link
-                    as={Link}
+                    as={Button}
                     onClick={handleClick}
                     className="text-dark link-demos"
                   >

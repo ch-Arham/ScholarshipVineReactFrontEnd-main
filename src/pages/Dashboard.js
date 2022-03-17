@@ -47,7 +47,6 @@ const Dashboard = () => {
   }, [isAuth, navigate]);
 
   return (
-<<<<<<< HEAD
     <>
       <ScrollToTop
         smooth
@@ -61,13 +60,10 @@ const Dashboard = () => {
               <Link to="/dashboard">Grants Opportunity List</Link>
             </li>
             <li className="mb-2">
-              <Link to="#">About us</Link>
+              <Link to="/contactus">Contact us</Link>
             </li>
             <li className="mb-2">
-              <Link to="#">Contact us</Link>
-            </li>
-            <li className="mb-2">
-              <Link to="#">Logout</Link>
+              <Link to="/">Main Page</Link>
             </li>
           </ul>
         </div>
@@ -79,36 +75,6 @@ const Dashboard = () => {
           </div>
 
           <Footer />
-=======
-      <>
-      <ScrollToTop smooth style={{background: 'lightgray', borderRadius:'50%'}} />
-        <div id="dashboard">
-            <TopBar onToggleMenu={onToggleMenu} onToggleMobMenu={onToggleMobMenu} /> 
-            <div className="left-side-menu" ref={leftSide}>                
-                    <ul className="list-unstyled ms-4">
-                    <li className="mb-2">
-                        <Link to="/dashboard">Grants Opportunity List</Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link to="/contactus">Contact us</Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link to="/">Main Page</Link>
-                    </li>
-                    
-                </ul>               
-            </div>             
-            <div ref={contentpage} className="content-page">
-                    <div className="content">
-                        {/* <Container fluid> */}
-                           <Initial />
-                        {/* </Container> */}
-                    </div>
-                   
-                    <Footer/>
-                   
-            </div>                       
->>>>>>> e6126586e8a396abd4291ee598c2cd11ccba3b2e
         </div>
       </div>
     </>

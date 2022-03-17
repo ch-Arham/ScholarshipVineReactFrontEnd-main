@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const Profile = require("../models/Profile");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -43,7 +44,20 @@ router.post(
         userName: req.body.userName,
         email: req.body.email,
         password: secPass,
-        
+      });
+      //create a new profile for the user
+
+      await Profile.create({
+        user: user.id,
+        userName: req.body.userName,
+        email: req.body.email,
+        phone: req.body.phoneNumber,
+        address: req.body.address,
+        country: req.body.country,
+        fullName: req.body.fullName,
+        bvn: req.body.bvn,
+        gender: req.body.gender,
+        dateOfBirth: req.body.dateOfBirth,
       });
 
       //pass this data in JWT data part
@@ -117,7 +131,8 @@ router.post(
       //same as route1
       const authToken = jwt.sign(data, JWT_SECRET);
       success = true;
-      res.json({ success, authToken });
+      user.password = undefined;
+      res.json({ success, authToken, user });
     } catch (err) {
       console.log(err.message);
       res.status(500).send("Internal Server Error");
@@ -128,9 +143,9 @@ router.post(
 //Route 3:Get logged in user details using: POST 'api/auth/getuser'.login required
 router.post("/getuser", fetchuser, async (req, res) => {
   try {
-    const userId = req.user.id;
-    const user = await User.findById(userId).select("-password"); //select all field except password
-    res.send(user);
+    const email = req.body.email;
+    const user = await Profile.findOne(email); //select all field except password
+    res.json({ user });
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Internal Server Error");

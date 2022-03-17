@@ -4,6 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { NavBar, Footer } from "../components";
 import { register } from "../redux/authentications/authActions";
 import { useDispatch, useSelector } from "react-redux";
+import { IoMdInformationCircleOutline } from "react-icons/io";
+import {BsCalendar2Date} from 'react-icons/bs';
+import { GrMapLocation, GrLocation } from "react-icons/gr";
+import{BsTelephoneInboundFill} from 'react-icons/bs';
 const Signup = () => {
   const navigate = useNavigate();
   const { isAuth } = useSelector((state) => state.auth);
@@ -34,7 +38,7 @@ const Signup = () => {
   };
   useEffect(() => {
     if (isAuth) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [isAuth, navigate]);
   return (
@@ -128,25 +132,12 @@ const Signup = () => {
                   <label className="form-label">Username</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="info icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
+                      <IoMdInformationCircleOutline
+                        style={{ fontSize: "2em", color: "#6c757d" }}
+                      />
                     </span>
                     <input
-                      placeholder="username"
+                      placeholder="Enter your username"
                       value={user.userName}
                       name="userName"
                       type="text"
@@ -160,22 +151,9 @@ const Signup = () => {
                   <label className="form-label">BVN</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
+                      <IoMdInformationCircleOutline
+                        style={{ fontSize: "2em", color: "#6c757d" }}
+                      />
                     </span>
                     <input
                       placeholder="bvn"
@@ -192,22 +170,9 @@ const Signup = () => {
                   <label className="form-label">Gender</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
+                      <IoMdInformationCircleOutline
+                        style={{ fontSize: "2em", color: "#6c757d" }}
+                      />
                     </span>
                     <input
                       placeholder="gender"
@@ -225,22 +190,9 @@ const Signup = () => {
                   <label className="form-label">Full Name</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
+                      <IoMdInformationCircleOutline
+                        style={{ fontSize: "2em", color: "#6c757d" }}
+                      />
                     </span>
                     <input
                       placeholder="Full name"
@@ -257,22 +209,9 @@ const Signup = () => {
                   <label className="form-label">Phone Number</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
+                      <BsTelephoneInboundFill
+                        style={{ fontSize: "2em", color: "#6c757d" }}
+                      />
                     </span>
                     <input
                       placeholder="phone number"
@@ -289,22 +228,9 @@ const Signup = () => {
                   <label className="form-label">Address</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
+                      <GrLocation
+                        style={{ fontSize: "2em", color: "#6c757d" }}
+                      />
                     </span>
                     <input
                       placeholder="address"
@@ -322,22 +248,9 @@ const Signup = () => {
                   <label className="form-label">Country</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
+                      <GrMapLocation
+                        style={{ fontSize: "2em", color: "#6c757d" }}
+                      />
                     </span>
                     <input
                       placeholder="country"
@@ -355,22 +268,9 @@ const Signup = () => {
                   <label className="form-label">Date of birth</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
+                      <BsCalendar2Date
+                        style={{ fontSize: "2em", color: "#6c757d" }}
+                      />
                     </span>
                     <input
                       placeholder="date of birth"
@@ -401,13 +301,9 @@ const Signup = () => {
               </div>
               <Row>
                 <Col xs={12} className="text-center mb-4">
-                  <Link to="#" className="btn btn-white mb-2 mb-sm-0 me-1">
+                  <Link to="/login" className="btn btn-white mb-2 mb-sm-0 me-1">
                     <i className="uil uil-google icon-google me-2"></i>
-                    With Google
-                  </Link>
-                  <Link to="#" className="btn btn-white mb-2 mb-sm-0">
-                    <i className="uil uil-facebook me-2 icon-fb"></i>
-                    With Facebook
+                    Login
                   </Link>
                 </Col>
               </Row>
