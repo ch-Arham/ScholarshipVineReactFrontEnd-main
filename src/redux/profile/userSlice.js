@@ -2,13 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
-  isAuth: false,
   error: "",
-  authToken: "",
+  profile: [],
 };
 
 const loginSlice = createSlice({
-  name: "auth",
+  name: "user",
   initialState,
   reducers: {
     loginPending: (state) => {
@@ -16,9 +15,8 @@ const loginSlice = createSlice({
     },
     loginSuccess: (state, { payload }) => {
       state.isLoading = false;
-      state.isAuth = true;
       state.error = "";
-      state.authToken = payload.authToken;
+      state.profile = payload.profile;
     },
     loginFail: (state, { payload }) => {
       state.isLoading = false;
@@ -26,9 +24,8 @@ const loginSlice = createSlice({
     },
     loggedOut: (state) => {
       state.isLoading = false;
-      state.isAuth = false;
       state.error = "";
-      state.authToken = "";
+      state.profile = [];
     },
   },
 });

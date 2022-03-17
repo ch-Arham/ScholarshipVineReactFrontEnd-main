@@ -16,7 +16,7 @@ router.post(
   "/createuser",
   [
     body("email").isEmail(),
-    body("name", "Enter a Valid Name").isLength({ min: 2 }), //body(type,msg)
+    body("userName", "Enter a Valid Name").isLength({ min: 2 }), //body(type,msg)
     body("password", "Password must be 5 character long").isLength({ min: 5 }),
   ],
   async (req, res) => {
@@ -40,9 +40,10 @@ router.post(
 
       //create a new user. await returns the resolved promise in this case the document created
       user = await User.create({
-        name: req.body.name,
+        userName: req.body.userName,
         email: req.body.email,
         password: secPass,
+        
       });
 
       //pass this data in JWT data part

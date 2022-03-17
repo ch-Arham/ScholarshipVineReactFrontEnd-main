@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NavBar, Footer } from "../components";
 import { register } from "../redux/authentications/authActions";
 import { useDispatch, useSelector } from "react-redux";
 const Signup = () => {
+  const navigate = useNavigate();
+  const { isAuth } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
@@ -28,8 +30,13 @@ const Signup = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(user);
-     register(dispatch, user);
+    register(dispatch, user);
   };
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth, navigate]);
   return (
     <>
       <NavBar />
@@ -374,10 +381,8 @@ const Signup = () => {
                       className="form-control"
                       onChange={onChange}
                     />
-                  </div>  
+                  </div>
                 </div>
-
-               
 
                 <div className="mb-3">
                   <button

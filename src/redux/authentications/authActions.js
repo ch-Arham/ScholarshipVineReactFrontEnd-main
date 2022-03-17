@@ -1,32 +1,50 @@
 import axios from "axios";
-import { loginPending, loginSuccess, loginFail } from "./authSlice";
-axios.defaults.headers.common = {
-  ...axios.defaults.headers.common,
-  "Access-Control-Allow-Origin": "*",
-  "Content-Type": "application/json",
-};
-axios.defaults.preflightContinue = true;
+import { loginPending, loginSuccess, loginFail, loggedOut } from "./authSlice";
 
 export const login = async (dispatch, User) => {
   dispatch(loginPending());
   try {
+    const response = await axios.post("http://localhost:5000/api/auth/login", {
+      email: User.email,
+      password: User.password,
+    });
+    const data = response.data;
+    dispatch(loginSuccess(data));
+  } catch (error) {
+    dispatch(loginFail());
+  }
+};
+
+export const register = async (dispatch, user) => {
+  dispatch(loginPending());
+  try {
     const response = await axios.post(
-      "https://localhost:5000/api/auth/login",
-      User
+      "http://localhost:5000/api/auth/createuser",
+      user
+    );
+    const data = response.data;
+    dispatch(loginSuccess(data));
+  } catch (error) {
+    dispatch(loginFail());
+  }
+};
+export const getUser = async (dispatch, user) => {
+  dispatch(loginPending());
+  try {
+    const response = await axios.get(
+      "https://localhost:5000/api/auth/getuser",
+      user
     );
     dispatch(loginSuccess(response));
   } catch (error) {
     dispatch(loginFail());
   }
 };
-export const register = async (dispatch, user) => {
+
+export const logout = async (dispatch) => {
   dispatch(loginPending());
   try {
-    const response = await axios.post(
-      "https://localhost:5000/api/auth/createuser",
-      user
-    );
-    dispatch(loginSuccess(response));
+    dispatch(loggedOut());
   } catch (error) {
     dispatch(loginFail());
   }
