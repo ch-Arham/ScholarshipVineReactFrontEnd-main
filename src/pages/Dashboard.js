@@ -53,13 +53,10 @@ const Dashboard = () => {
                         <Link to="/dashboard">Grants Opportunity List</Link>
                     </li>
                     <li className="mb-2">
-                        <Link to="#">About us</Link>
+                        <Link to="/contactus">Contact us</Link>
                     </li>
                     <li className="mb-2">
-                        <Link to="#">Contact us</Link>
-                    </li>
-                    <li className="mb-2">
-                        <Link to="#">Logout</Link>
+                        <Link to="/">Main Page</Link>
                     </li>
                     
                 </ul>               

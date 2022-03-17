@@ -14,6 +14,7 @@ import Dashboard from '../pages/Dashboard';
 
 import '../assets/scss/Theme.scss';
 import Signup from '../pages/Signup';
+import ContactUs from '../pages/ContactUs';
 
 const App = () => {    
 
@@ -36,6 +37,7 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/contactus" element={<ContactUs />} />
                 </Routes>         
             </Router>        
 
