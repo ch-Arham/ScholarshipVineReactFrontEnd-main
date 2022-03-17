@@ -10,32 +10,13 @@ const Signup = () => {
     email: "",
     password: "",
     bvn: "",
-    username: "",
-    first_name: "",
-    last_name: "",
-    full_name: "",
-    phone_number: "",
+    userName: "",
+    fullName: "",
+    phoneNumber: "",
     gender: "",
-    address: "",
-    city: "",
-    state: "",
     country: "",
-    pin: "",
-    promo_code: "",
-    date_of_birth: "",
-    country_code: "",
-    profile_type: "",
-    question_1: "What is your favorite color?",
-    question_2: "What is your name?",
-    question_3: "What is your favorite food?",
-    answer_1: "",
-    answer_2: "",
-    answer_3: "",
-    image_id: "NIN",
-    is_active: true,
-    user_type: "",
-    tenant_id: "",
-    is_staff: false,
+    address: "",
+    dateOfBirth: "",
   });
   const onChange = (e) => {
     setUser({
@@ -46,7 +27,8 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    register(dispatch, user);
+    console.log(user);
+     register(dispatch, user);
   };
   return (
     <>
@@ -158,10 +140,10 @@ const Signup = () => {
                     </span>
                     <input
                       placeholder="username"
-                      value={user.username}
-                      name="email"
-                      type="email"
-                      id="email"
+                      value={user.userName}
+                      name="userName"
+                      type="text"
+                      id="userName"
                       className="form-control"
                       onChange={onChange}
                     />
@@ -231,70 +213,7 @@ const Signup = () => {
                     />
                   </div>
                 </div>
-                <div className="mb-4">
-                  <label className="form-label">First Name</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="first name"
-                      value={user.first_name}
-                      name="first_name"
-                      type="text"
-                      id="first_name"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label className="form-label">Last Name</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="last name"
-                      value={user.last_name}
-                      name="last_name"
-                      type="text"
-                      id="last_name"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
+
                 <div className="mb-4">
                   <label className="form-label">Full Name</label>
                   <div className="input-group">
@@ -317,11 +236,11 @@ const Signup = () => {
                       </svg>
                     </span>
                     <input
-                      placeholder="full name"
-                      value={user.full_name}
-                      name="full_name"
+                      placeholder="Full name"
+                      value={user.fullName}
+                      name="fullName"
                       type="text"
-                      id="full_name"
+                      id="fullName"
                       className="form-control"
                       onChange={onChange}
                     />
@@ -350,10 +269,10 @@ const Signup = () => {
                     </span>
                     <input
                       placeholder="phone number"
-                      value={user.phone_number}
-                      name="phone_number"
+                      value={user.phoneNumber}
+                      name="phoneNumber"
                       type="text"
-                      id="phone_number"
+                      id="phoneNumber"
                       className="form-control"
                       onChange={onChange}
                     />
@@ -386,134 +305,6 @@ const Signup = () => {
                       name="address"
                       type="text"
                       id="address"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label className="form-label">City</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="city"
-                      value={user.city}
-                      name="city"
-                      type="text"
-                      id="city"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label className="form-label">State</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="state"
-                      value={user.state}
-                      name="state"
-                      type="text"
-                      id="state"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label className="form-label">Pin</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="pin"
-                      value={user.pin}
-                      name="pin"
-                      type="text"
-                      id="pin"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label className="form-label">Promo</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="promo"
-                      value={user.promo}
-                      name="promo"
-                      type="text"
-                      id="promo"
                       className="form-control"
                       onChange={onChange}
                     />
@@ -554,39 +345,6 @@ const Signup = () => {
                 </div>
 
                 <div className="mb-4">
-                  <label className="form-label">Country Code</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="country code"
-                      value={user.country_code}
-                      name="country_code"
-                      type="text"
-                      id="countryCode"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-4">
                   <label className="form-label">Date of birth</label>
                   <div className="input-group">
                     <span className="input-group-text">
@@ -609,180 +367,17 @@ const Signup = () => {
                     </span>
                     <input
                       placeholder="date of birth"
-                      value={user.date_of_birth}
-                      name="date_of_birth"
-                      type="text"
+                      value={user.dateOfBirth}
+                      name="dateOfBirth"
+                      type="date"
                       id="dateOfBirth"
                       className="form-control"
                       onChange={onChange}
                     />
-                  </div>
+                  </div>  
                 </div>
 
-                <div className="mb-4">
-                  <label className="form-label">Profile Type</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="profile type"
-                      value={user.profile_type}
-                      name="profile_type"
-                      type="text"
-                      id="profileType"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <label className="form-label">Question 1</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="What is your favorite color?"
-                      value={user.answer_1}
-                      name="question_1"
-                      type="text"
-                      id="question1"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <label className="form-label">Question 2</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="What is your name?"
-                      value={user.answer_2}
-                      name="question_2"
-                      type="text"
-                      id="question2"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <label className="form-label">Question 3</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="What is your favorite food?"
-                      value={user.answer_3}
-                      name="question_3"
-                      type="text"
-                      id="question3"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-4">
-                  <label className="form-label">Phone Number</label>
-                  <div className="input-group">
-                    <span className="input-group-text">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail icon-dual"
-                      >
-                        <g>
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <polyline points="22,6 12,13 2,6"></polyline>
-                        </g>
-                      </svg>
-                    </span>
-                    <input
-                      placeholder="phone number"
-                      value={user.phone_number}
-                      name="phone_number"
-                      type="text"
-                      id="phone_number"
-                      className="form-control"
-                      onChange={onChange}
-                    />
-                  </div>
-                </div>
+               
 
                 <div className="mb-3">
                   <button
