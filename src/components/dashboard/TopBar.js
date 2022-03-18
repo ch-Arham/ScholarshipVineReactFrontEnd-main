@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import FeatherIcon from "feather-icons-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Modal,Button } from "react-bootstrap";
+
+
 
 import {
   SearchDropdown,
@@ -17,49 +20,6 @@ import avatar4 from "../../assets/images/users/avatar-4.jpg";
 import SVlogoLight from "../../assets/images/SV/logo-light.png";
 import logoSm from "../../assets/images/SV/logo-sm.png";
 
-// get the notifications
-const Notifications = [
-  {
-    id: 1,
-    text: "Cristina Pride",
-    subText: "Hi, How are you? What about our next meeting",
-    avatar: profilePic,
-  },
-  {
-    id: 2,
-    text: "Caleb Flakelar commented on Admin",
-    subText: "1 min ago",
-    icon: "uil uil-comment-message",
-    bgColor: "primary",
-  },
-  {
-    id: 3,
-    text: "Karen Robinson",
-    subText: "Wow ! this admin looks good and awesome design",
-    avatar: avatar4,
-  },
-  {
-    id: 4,
-    text: "New user registered.",
-    subText: "5 hours ago",
-    icon: "uil uil-user-plus",
-    bgColor: "warning",
-  },
-  {
-    id: 5,
-    text: "Caleb Flakelar commented on Admin",
-    subText: "1 min ago",
-    icon: "uil uil-comment-message",
-    bgColor: "info",
-  },
-  {
-    id: 6,
-    text: "Carlos Crouch liked Admin",
-    subText: "13 days ago",
-    icon: "uil uil-heart",
-    bgColor: "secondary",
-  },
-];
 const ProfileMenus = [
   {
     label: "My Account",
@@ -77,9 +37,36 @@ const ProfileMenus = [
     redirectTo: "/",
   },
 ];
-
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Modal heading
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4>Centered Modal</h4>
+        <p>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+          consectetur ac, vestibulum at eros.
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { profile } = useSelector((state) => state.user);
+  const [modalShow, setModalShow] = React.useState(false);
   const logolg = useRef(null);
   const logosm = useRef(null);
   const logobox = useRef(null);
@@ -159,7 +146,7 @@ const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
               <ProfileDropdown
                 profilePic={profilePic}
                 menuItems={ProfileMenus}
-                username={user.name}
+                username={profile.fullName}
               />
             </li>
           </ul>

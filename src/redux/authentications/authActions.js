@@ -36,6 +36,7 @@ export const logout = async (dispatch) => {
   dispatch(loginPending());
   try {
     dispatch(loggedOut());
+    localStorage.removeItem("authToken");
   } catch (error) {
     dispatch(loginFail());
   }
