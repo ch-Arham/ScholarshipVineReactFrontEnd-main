@@ -2,43 +2,24 @@ import React, { useState, useRef, useEffect } from "react";
 import FeatherIcon from "feather-icons-react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
+import {  Button } from "react-bootstrap";
 import { getUser } from "../../redux/profile/userActions";
 import {
   SearchDropdown,
   MaximizeScreen,
   AppsDropdown,
   LanguageDropdown,
-  NotificationDropdown,
-  ProfileDropdown,
+ 
 } from "./TopBarItems";
-// images
-import profilePic from "../../assets/images/SV/logo-sm.png";
-import avatar4 from "../../assets/images/users/avatar-4.jpg";
+
 import SVlogoLight from "../../assets/images/SV/logo-light.png";
 import logoSm from "../../assets/images/SV/logo-sm.png";
-
-const ProfileMenus = [
-  {
-    label: "My Account",
-    icon: "user",
-    redirectTo: "#",
-  },
-  {
-    label: "Lock Screen",
-    icon: "lock",
-    redirectTo: "#",
-  },
-  {
-    label: "Logout",
-    icon: "log-out",
-    redirectTo: "/",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import { logout } from "../../redux/authentications/authActions";
 const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
-  const { profile } = useSelector((state) => state.user);
   const { isAuth, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const logolg = useRef(null);
   const logosm = useRef(null);
   const logobox = useRef(null);
@@ -54,6 +35,10 @@ const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
       logosm.current.classList.remove("show");
       logobox.current.style.width = "250px";
     }
+  };
+  const handleLogout = () => {
+    logout(dispatch);
+    navigate("/login");
   };
   useEffect(() => {
     if (isAuth) {
@@ -117,11 +102,7 @@ const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
               <LanguageDropdown />
             </li>
             <li className="dropdown notification-list topbar-dropdown d-inline-block">
-              <ProfileDropdown
-                profilePic={profilePic}
-                menuItems={ProfileMenus}
-                username={profile?.fullName}
-              />
+              <Button onClick={handleLogout}>Logout</Button>
             </li>
           </ul>
         </div>

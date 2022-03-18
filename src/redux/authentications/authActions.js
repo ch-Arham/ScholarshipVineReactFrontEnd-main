@@ -1,5 +1,6 @@
 import axios from "axios";
 import { loginPending, loginSuccess, loginFail, loggedOut } from "./authSlice";
+import { userLogout } from "../profile/userSlice";
 
 export const login = async (dispatch, User) => {
   dispatch(loginPending());
@@ -36,6 +37,7 @@ export const logout = async (dispatch) => {
   dispatch(loginPending());
   try {
     dispatch(loggedOut());
+    dispatch(userLogout());
     localStorage.removeItem("authToken");
   } catch (error) {
     dispatch(loginFail());

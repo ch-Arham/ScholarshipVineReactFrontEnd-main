@@ -22,11 +22,14 @@ const loginSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    userLogout: (state) => {
+      state.profile = [];
+    },
   },
 });
 
 const { reducer, actions } = loginSlice;
 
-export const { userPending, userSuccess, userFail } = actions;
+export const { userPending, userSuccess, userFail, userLogout } = actions;
 
 export default reducer;
