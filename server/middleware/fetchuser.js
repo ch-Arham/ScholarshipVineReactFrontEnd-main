@@ -6,13 +6,13 @@ dotenv.config({ path: "./.env" });
 const JWT_SECRET = process.env.JWT_SECRET;
 
 //basically to authenticate token and get user.id
-const fetchuser = (req, res, next) => {
+const fetchuser = async (req, res, next) => {
   //get a user from jwt token and id to req object
-  const token = req.header("auth-token");
+  const token = await req.header("authToken");
   if (!token) {
     return res
       .status(401)
-      .send({ error: "please authenticate with valid token" });
+      .send({ error: "please authenticate with valid token 11111" });
   }
   try {
     const data = jwt.verify(token, JWT_SECRET);
@@ -21,7 +21,7 @@ const fetchuser = (req, res, next) => {
   } catch (error) {
     return res
       .status(401)
-      .send({ error: "please authenticate with valid token" });
+      .send({ error: "please authenticate with valid token 22222" });
   }
 };
 

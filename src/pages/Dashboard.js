@@ -5,7 +5,7 @@ import ScrollToTop from "react-scroll-to-top";
 import { TopBar, Footer } from "../components/dashboard";
 import Initial from "../components/xmlScholar/Initial";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "../redux/profile/userActions";
+
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,13 +45,11 @@ const Dashboard = () => {
   }, []);
   React.useEffect(() => {
     if (!isAuth) {
+      localStorage.removeItem("authToken");
       navigate("/login");
     }
-    if (isAuth) {
-      getUser(dispatch, user.email);
-    }
-  }, [isAuth, navigate, dispatch]);
-  console.log("email",currentUser.email);
+  }, [isAuth, navigate]);
+  console.log("email", currentUser.email);
   return (
     <>
       <ScrollToTop
