@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { NavBar, Footer } from "../components";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/authentications/authActions";
+import { getUser } from "../redux/profile/userActions";
 const Login = () => {
   const { isAuth } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Login = () => {
     if (isAuth) {
       navigate("/dashboard");
     }
+    
   }, [isAuth, navigate]);
   return (
     <>

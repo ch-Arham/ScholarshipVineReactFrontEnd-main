@@ -8,7 +8,9 @@ export const login = async (dispatch, User) => {
       email: User.email,
       password: User.password,
     });
+
     const data = response.data;
+    localStorage.setItem("authToken", data.authToken);
     dispatch(loginSuccess(data));
   } catch (error) {
     dispatch(loginFail());
@@ -23,12 +25,12 @@ export const register = async (dispatch, user) => {
       user
     );
     const data = response.data;
+    localStorage.setItem("authToken", data.authToken);
     dispatch(loginSuccess(data));
   } catch (error) {
     dispatch(loginFail());
   }
 };
-
 
 export const logout = async (dispatch) => {
   dispatch(loginPending());

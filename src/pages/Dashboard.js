@@ -5,13 +5,16 @@ import ScrollToTop from "react-scroll-to-top";
 import { TopBar, Footer } from "../components/dashboard";
 import Initial from "../components/xmlScholar/Initial";
 import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../redux/profile/userActions";
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuth } = useSelector((state) => state.auth);
+  const { isAuth, user } = useSelector((state) => state.auth);
   const leftSide = useRef(null);
   const contentpage = useRef(null);
   const [activeLeftSide, setActiveLeftSide] = useState(true);
   const [activeMobLeftSide, setMobActiveLeftSide] = useState(false);
+  const [currentUser, setCurrentUser] = useState(user);
   const onToggleMenu = () => {
     setActiveLeftSide(!activeLeftSide);
     if (!activeLeftSide) {
@@ -44,8 +47,11 @@ const Dashboard = () => {
     if (!isAuth) {
       navigate("/login");
     }
-  }, [isAuth, navigate]);
-
+    if (isAuth) {
+      getUser(dispatch, user.email);
+    }
+  }, [isAuth, navigate, dispatch]);
+  console.log("email",currentUser.email);
   return (
     <>
       <ScrollToTop

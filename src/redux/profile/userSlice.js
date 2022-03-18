@@ -10,28 +10,23 @@ const loginSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loginPending: (state) => {
+    userPending: (state) => {
       state.isLoading = true;
     },
-    loginSuccess: (state, { payload }) => {
+    userSuccess: (state, { payload }) => {
       state.isLoading = false;
       state.error = "";
-      state.profile = payload.profile;
+      state.profile = payload.user;
     },
-    loginFail: (state, { payload }) => {
+    userFail: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
-    },
-    loggedOut: (state) => {
-      state.isLoading = false;
-      state.error = "";
-      state.profile = [];
     },
   },
 });
 
 const { reducer, actions } = loginSlice;
 
-export const { loginPending, loginSuccess, loginFail, loggedOut } = actions;
+export const { userPending, userSuccess, userFail } = actions;
 
 export default reducer;
