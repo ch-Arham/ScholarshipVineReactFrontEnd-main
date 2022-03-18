@@ -5,12 +5,12 @@ import { NavBar, Footer } from "../components";
 import { register } from "../redux/authentications/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import {BsCalendar2Date} from 'react-icons/bs';
+import { BsCalendar2Date } from "react-icons/bs";
 import { GrMapLocation, GrLocation } from "react-icons/gr";
-import{BsTelephoneInboundFill} from 'react-icons/bs';
+import { BsTelephoneInboundFill } from "react-icons/bs";
 const Signup = () => {
   const navigate = useNavigate();
-  const { isAuth } = useSelector((state) => state.auth);
+  const { isAuth, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
@@ -33,6 +33,12 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (error === true) {
+      alert("Invalid email or password");
+    }
+    if (user.email === "" || user.password === "") {
+      alert("Please fill all the fields");
+    }
     console.log(user);
     register(dispatch, user);
   };
