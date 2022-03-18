@@ -2,14 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import FeatherIcon from "feather-icons-react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {  Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { getUser } from "../../redux/profile/userActions";
 import {
   SearchDropdown,
   MaximizeScreen,
   AppsDropdown,
   LanguageDropdown,
- 
 } from "./TopBarItems";
 
 import SVlogoLight from "../../assets/images/SV/logo-light.png";
@@ -41,8 +40,8 @@ const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
     navigate("/login");
   };
   useEffect(() => {
-    if (isAuth) {
-      getUser(dispatch, user.email);
+    if (user) {
+      getUser(dispatch, user._id);
     }
   }, [isAuth, user, dispatch]);
 

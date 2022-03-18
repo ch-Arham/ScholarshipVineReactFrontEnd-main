@@ -143,8 +143,8 @@ router.post(
 //Route 3:Get logged in user details using: POST 'api/auth/getuser'.login required
 router.post("/getuser", fetchuser, async (req, res) => {
   try {
-    const email = req.body.email;
-    const user = await Profile.findOne(email); //select all field except password
+    const userId = req.body.id;
+    const user = await Profile.findOne({ user: userId }); //select all field except password
     res.json({ user });
   } catch (err) {
     console.log(err.message);

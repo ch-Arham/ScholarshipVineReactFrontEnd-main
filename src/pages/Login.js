@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/authentications/authActions";
 import { getUser } from "../redux/profile/userActions";
 const Login = () => {
-  const { isAuth } = useSelector((state) => state.auth);
+  const { isAuth, error } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -14,20 +14,25 @@ const Login = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const User = {
-      email: email,
-      password: password,
-    };
-
-    login(dispatch, User);
+    if (error === true) {
+      alert("Invalid email or password");
+    }
+    if (email === "" || password === "") {
+      alert("Please fill all the fields");
+    } else {
+      const User = {
+        email: email,
+        password: password,
+      };
+      login(dispatch, User);
+    }
   };
   useEffect(() => {
     if (isAuth) {
-    
       navigate("/dashboard");
     }
-    
   }, [isAuth, navigate]);
+
   return (
     <>
       <NavBar />
