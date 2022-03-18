@@ -13,7 +13,7 @@ const fetchuser = (req, res, next) => {
   const token = req.header("authToken");
   //verify that the token is given
   if (!token) {
-    return res.status(401).send({ error: "authenticate using a token" });
+    res.status(401).send({ error: "Authenticate using a token" });
   }
 
   try {
@@ -22,11 +22,11 @@ const fetchuser = (req, res, next) => {
 
     //console.log(req.user) //undefined as it is not present
     req.user = data.user; //pass the data (id) in req.user.id
-    next(); //next function should be executed --> the async (req,res) 3rd arg
     //console.log(req.user) //{id: '61b13105957a64ddbc5fa68a'} created
   } catch (error) {
-    return res.status(401).send({ error: "Authenticate using a valid token" });
+    res.status(401).send({ error: "authenticate using a valid token" });
   }
+  next(); //next function should be executed --> the async (req,res) 3rd arg
 };
 
 module.exports = fetchuser;

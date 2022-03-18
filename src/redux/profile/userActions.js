@@ -7,12 +7,13 @@ export const getUser = async (dispatch, email) => {
   try {
     const response = await axios.post(
       "http://localhost:5000/api/auth/getuser",
+      { email },
+
       {
         Headers: {
           authToken: authToken,
         },
-      },
-      email
+      }
     );
 
     dispatch(userSuccess(response.data));
