@@ -103,6 +103,11 @@ const Dashboard = () => {
                 Profile
               </Link>
             </li>
+            <li className="mb-2">
+              <Link onClick={() => setModalShow(true)} to="/payment">
+                Payment
+              </Link>
+            </li>
           </ul>
         </div>
         <MyVerticallyCenteredModal
@@ -123,4 +128,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard

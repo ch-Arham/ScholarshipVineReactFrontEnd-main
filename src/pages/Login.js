@@ -80,12 +80,6 @@ const Login = () => {
                 </div>
                 <div className="mb-4">
                   <label className="form-label">Password</label>
-                  <a
-                    className="float-end text-muted text-unline-dashed ms-1"
-                    href="/auth/forget-password"
-                  >
-                    Forgot your password?
-                  </a>
                   <div className="input-group">
                     <span className="input-group-text">
                       <svg
@@ -142,7 +136,7 @@ const Login = () => {
                   </div>
                 </div>
                 <div className="mb-3">
-                  <button onClick={handleClick} className="btn btn-primary">
+                  <button onClick={handleClick} className="btn btn-primary px-3">
                     Log In
                   </button>
                   <Link to="/dashboard" className="text-center d-grid"></Link>
@@ -158,11 +152,9 @@ const Login = () => {
                     to="/signup"
                     className="btn btn-white mb-2 mb-sm-0 me-1"
                   >
-                    <i className="uil uil-google icon-google me-2"></i>
                     Create and Account
                   </Link>
-                  <Link to="#" className="btn btn-white mb-2 mb-sm-0">
-                    <i className="uil uil-facebook me-2 icon-fb"></i>
+                  <Link to="/forgotpassword" className="btn btn-white mb-2 mb-sm-0">
                     Forgot Password
                   </Link>
                 </Col>
