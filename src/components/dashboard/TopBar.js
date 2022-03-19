@@ -41,7 +41,9 @@ const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
   };
   useEffect(() => {
     if (user) {
-      getUser(dispatch, user._id);
+      const userId = user.id;
+      console.log(userId);
+      getUser(dispatch, userId);
     }
   }, [isAuth, user, dispatch]);
 

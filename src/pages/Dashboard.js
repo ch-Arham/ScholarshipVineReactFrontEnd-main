@@ -110,10 +110,7 @@ const Dashboard = () => {
             </li>
           </ul>
         </div>
-        <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
+        {currentUser && <MyVerticallyCenteredModal />}
         <div ref={contentpage} className="content-page">
           <div className="content">
             {/* <Container fluid> */}
@@ -128,4 +125,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard
+export default Dashboard;
