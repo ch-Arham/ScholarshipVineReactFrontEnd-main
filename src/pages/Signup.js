@@ -6,8 +6,12 @@ import { register } from "../redux/authentications/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { BsCalendar2Date } from "react-icons/bs";
-import { GrMapLocation, GrLocation } from "react-icons/gr";
-import { BsTelephoneInboundFill } from "react-icons/bs";
+import { BiWorld, BiUser } from "react-icons/bi";
+import { FaRegAddressBook } from 'react-icons/fa'
+import { BsTelephoneInboundFill,BsGenderAmbiguous } from "react-icons/bs";
+import { AiOutlineFieldNumber } from "react-icons/ai";
+import { MdDriveFileRenameOutline } from "react-icons/md";
+
 const Signup = () => {
   const navigate = useNavigate();
   const { isAuth, error } = useSelector((state) => state.auth);
@@ -55,7 +59,7 @@ const Signup = () => {
           <Card style={{ maxWidth: "40rem", width: "100%" }}>
             <Card.Body>
               <h2 className="text-center mb-0 mt-3 mb-2">
-                Sign up for an Account
+                Sign Up To Create Your Account
               </h2>
               <p className="text-center text-muted mt-1 mb-4">
                 Create your account now.
@@ -84,7 +88,7 @@ const Signup = () => {
                       </svg>
                     </span>
                     <input
-                      placeholder="Email Address"
+                      placeholder="Enter Your Email Address"
                       value={user.email}
                       name="email"
                       type="email"
@@ -124,7 +128,7 @@ const Signup = () => {
                       </svg>
                     </span>
                     <input
-                      placeholder="Enter your Password"
+                      placeholder="Enter Your Password"
                       value={user.password}
                       name="password"
                       type="password"
@@ -138,12 +142,12 @@ const Signup = () => {
                   <label className="form-label">Username</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <IoMdInformationCircleOutline
+                      <BiUser
                         style={{ fontSize: "2em", color: "#6c757d" }}
                       />
                     </span>
                     <input
-                      placeholder="Enter your username"
+                      placeholder="Enter Your username"
                       value={user.userName}
                       name="userName"
                       type="text"
@@ -157,12 +161,12 @@ const Signup = () => {
                   <label className="form-label">BVN</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <IoMdInformationCircleOutline
+                      <AiOutlineFieldNumber
                         style={{ fontSize: "2em", color: "#6c757d" }}
                       />
                     </span>
                     <input
-                      placeholder="bvn"
+                      placeholder="BVN"
                       value={user.bvn}
                       name="bvn"
                       type="text"
@@ -176,12 +180,12 @@ const Signup = () => {
                   <label className="form-label">Gender</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <IoMdInformationCircleOutline
+                      <BsGenderAmbiguous
                         style={{ fontSize: "2em", color: "#6c757d" }}
                       />
                     </span>
                     <input
-                      placeholder="gender"
+                      placeholder="State Your Gender"
                       value={user.gender}
                       name="gender"
                       type="gender"
@@ -196,12 +200,12 @@ const Signup = () => {
                   <label className="form-label">Full Name</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <IoMdInformationCircleOutline
+                      <MdDriveFileRenameOutline
                         style={{ fontSize: "2em", color: "#6c757d" }}
                       />
                     </span>
                     <input
-                      placeholder="Full name"
+                      placeholder="Enter Your Full Name"
                       value={user.fullName}
                       name="fullName"
                       type="text"
@@ -216,11 +220,11 @@ const Signup = () => {
                   <div className="input-group">
                     <span className="input-group-text">
                       <BsTelephoneInboundFill
-                        style={{ fontSize: "2em", color: "#6c757d" }}
+                        style={{ fontSize: "1.5em", color: "#6c757d" }}
                       />
                     </span>
                     <input
-                      placeholder="phone number"
+                      placeholder="Enter Your Phone Number"
                       value={user.phoneNumber}
                       name="phoneNumber"
                       type="text"
@@ -234,12 +238,12 @@ const Signup = () => {
                   <label className="form-label">Address</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <GrLocation
+                      <FaRegAddressBook
                         style={{ fontSize: "2em", color: "#6c757d" }}
                       />
                     </span>
                     <input
-                      placeholder="address"
+                      placeholder="Enter Your Address"
                       value={user.address}
                       name="address"
                       type="text"
@@ -254,12 +258,12 @@ const Signup = () => {
                   <label className="form-label">Country</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <GrMapLocation
+                      <BiWorld
                         style={{ fontSize: "2em", color: "#6c757d" }}
                       />
                     </span>
                     <input
-                      placeholder="country"
+                      placeholder="Enter Your Country"
                       value={user.country}
                       name="country"
                       type="text"
@@ -271,7 +275,7 @@ const Signup = () => {
                 </div>
 
                 <div className="mb-4">
-                  <label className="form-label">Date of birth</label>
+                  <label className="form-label">Date of Birth</label>
                   <div className="input-group">
                     <span className="input-group-text">
                       <BsCalendar2Date
@@ -279,7 +283,7 @@ const Signup = () => {
                       />
                     </span>
                     <input
-                      placeholder="date of birth"
+                      placeholder="Date of Birth"
                       value={user.dateOfBirth}
                       name="dateOfBirth"
                       type="date"
@@ -307,8 +311,7 @@ const Signup = () => {
               </div>
               <Row>
                 <Col xs={12} className="text-center mb-4">
-                  <Link to="/login" className="btn btn-white mb-2 mb-sm-0 me-1">
-                    <i className="uil uil-google icon-google me-2"></i>
+                  <Link to="/login" className="btn btn-white mb-2 mb-sm-0 me-1 px-4">
                     Login
                   </Link>
                 </Col>

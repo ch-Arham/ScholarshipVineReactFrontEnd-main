@@ -68,7 +68,7 @@ const Login = () => {
                       </svg>
                     </span>
                     <input
-                      placeholder="hello@inbox.com"
+                      placeholder="Enter Your Email"
                       value={email}
                       name="email"
                       type="email"
@@ -143,7 +143,7 @@ const Login = () => {
                 </div>
               </form>
 
-              <div className="py-3 text-center">
+              <div className="py-1 text-center">
                 <span className="fs-16 fw-bold">OR</span>
               </div>
               <Row>
@@ -152,7 +152,7 @@ const Login = () => {
                     to="/signup"
                     className="btn btn-white mb-2 mb-sm-0 me-1"
                   >
-                    Create and Account
+                    Create An Account
                   </Link>
                   <Link to="/forgotpassword" className="btn btn-white mb-2 mb-sm-0">
                     Forgot Password

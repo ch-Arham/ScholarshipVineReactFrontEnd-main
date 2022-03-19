@@ -10,7 +10,7 @@ const Payment = () => {
   const [activeLeftSide, setActiveLeftSide] = useState(true);
   const [activeMobLeftSide, setMobActiveLeftSide] = useState(false);
   const [modalShow, setModalShow] = React.useState(false);
-  
+
   const onToggleMenu = () => {
     setActiveLeftSide(!activeLeftSide);
     if (!activeLeftSide) {
@@ -92,9 +92,10 @@ const Payment = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            width: "100vw",
+            width: "80vw",
             height: "65vh",
             flexDirection: "column",
+            marginLeft: '13em'
           }}
         >
           <Form
