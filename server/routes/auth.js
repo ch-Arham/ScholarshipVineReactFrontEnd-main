@@ -146,6 +146,9 @@ router.post("/getuser", fetchuser, async (req, res) => {
   try {
     const userId = req.body.userId;
     const user = await Profile.findOne({ user: userId });
+    if (!user) {
+      return res.status(404).json({ error: "User not found", user: user });
+    }
     res.json({ User: user });
   } catch (err) {
     console.log(err.message);

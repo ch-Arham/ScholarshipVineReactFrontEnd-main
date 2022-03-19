@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import FeatherIcon from "feather-icons-react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
-import { getUser } from "../../redux/profile/userActions";
+
 import {
   SearchDropdown,
   MaximizeScreen,
@@ -16,7 +16,6 @@ import logoSm from "../../assets/images/SV/logo-sm.png";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/authentications/authActions";
 const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
-  const { isAuth, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logolg = useRef(null);
@@ -39,13 +38,6 @@ const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
     logout(dispatch);
     navigate("/login");
   };
-  useEffect(() => {
-    if (user._id) {
-      const userId = user.id;
-      console.log("userId", userId);
-      getUser(dispatch, userId);
-    }
-  }, [isAuth, user, dispatch]);
 
   return (
     <div className="topbar" style={{ zIndex: "100" }}>
