@@ -40,9 +40,9 @@ const TopBar = ({ onToggleMenu, onToggleMobMenu }) => {
     navigate("/login");
   };
   useEffect(() => {
-    if (user) {
+    if (user._id) {
       const userId = user.id;
-      console.log(userId);
+      console.log("userId", userId);
       getUser(dispatch, userId);
     }
   }, [isAuth, user, dispatch]);
