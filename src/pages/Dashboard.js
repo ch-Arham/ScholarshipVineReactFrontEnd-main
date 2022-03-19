@@ -55,7 +55,6 @@ const Dashboard = () => {
     }
   }, [isAuth, navigate]);
   useEffect(() => {
-    
     if (user) {
       setLoading(true);
       const userId = user._id;
