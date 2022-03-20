@@ -39,21 +39,27 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (isError) {
-      alert("Invalid email or password");
-      setIsError(false);
-    }
+    // if (isError) {
+    //   alert("Invalid email or password");
+    //   setIsError(false);
+    // }
     if (user.email === "" || user.password === "") {
       alert("Please fill all the fields");
     }
     register(dispatch, user);
+    setTimeout(() => {
+      navigate('/dashboard');
+    }, 2000);
   };
+
+
   useEffect(() => {
     if (isAuth && User) {
       getUser(dispatch, User._id);
       navigate("/dashboard");
     }
   }, [isAuth, navigate, User, dispatch]);
+
   return (
     <>
       <NavBar />

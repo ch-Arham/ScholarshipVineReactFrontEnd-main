@@ -9,12 +9,16 @@ export const login = async (dispatch, User) => {
       email: User.email,
       password: User.password,
     });
-
     const data = response.data;
     localStorage.setItem("authToken", data.authToken);
     dispatch(loginSuccess(data));
   } catch (error) {
-    dispatch(loginFail());
+    if(error.message === 'Request failed with status code 400'){
+      alert("Invalid email or password");
+    }else{
+
+      dispatch(loginFail());
+    }
   }
 };
 
@@ -29,7 +33,12 @@ export const register = async (dispatch, user) => {
     localStorage.setItem("authToken", data.authToken);
     dispatch(loginSuccess(data));
   } catch (error) {
-    dispatch(loginFail());
+    if(error.message === 'Request failed with status code 400'){
+      alert("Invalid email or password");
+    }else{
+
+      dispatch(loginFail());
+    }
   }
 };
 

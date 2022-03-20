@@ -14,18 +14,17 @@ const Login = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (error === true) {
-      alert("Invalid email or password");
-    }
     if (email === "" || password === "") {
       alert("Please fill all the fields");
-    } else {
+    }
+    else {
       const User = {
         email: email,
         password: password,
       };
       login(dispatch, User);
     }
+    
   };
   useEffect(() => {
     if (isAuth) {

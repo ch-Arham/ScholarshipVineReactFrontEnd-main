@@ -159,11 +159,12 @@ router.post("/getuser", fetchuser, async (req, res) => {
 router.post("/forgotpassword", async (req, res) => {
   try {
     const email = req.body.email;
+  
     let user1 = await User.find({ email });
     if (!user1) {
       return res.json({ success: false, message: "Invalid Credentials" });
     }
-
+    // console.log(JSON. stringify(user1[0]._id));
     function generatePassword() {
       var length = 8,
         charset =
@@ -189,12 +190,12 @@ router.post("/forgotpassword", async (req, res) => {
     //Step 2 what to send to mail
     let mailOptions = {
       from: "scholarshipvine@gmail.com",
-      to: "ch.arham1220@gmail.com",
+      to: `${req.body.email}`,
       subject: "Password Reset",
       text: `Your New Password Is:\n${newPassword}`,
     };
 
-    // Step 3
+    // // Step 3
     transporter.sendMail(mailOptions, async (err, data) => {
       if (err) {
         console.log("Error:", err.message);
@@ -203,14 +204,17 @@ router.post("/forgotpassword", async (req, res) => {
         //password hashing
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(newPassword, salt);
+       
         user1 = await User.findByIdAndUpdate(
-          user1._id,
+          user1[0]._id,
           { password: secPass },
           { new: true }
         );
       }
     });
 
+    setTimeout(()=>{console.log(user1)},5000)
+    
     res.json({ success: true });
   } catch (err) {
     console.log(err.message);
