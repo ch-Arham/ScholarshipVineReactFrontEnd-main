@@ -62,25 +62,20 @@ const Payment = () => {
       <TopBar onToggleMenu={onToggleMenu} onToggleMobMenu={onToggleMobMenu} />
       <div className="left-side-menu" ref={leftSide}>
         <ul className="list-unstyled ms-4">
-        <li className="mb-2">
-              <Link to="/dashboard">Grants Opportunity List</Link>
-            </li>
-            <li className="mb-2">
-              <Link to="/contactus">Contact us</Link>
-            </li>
-            <li className="mb-2">
-              <Link to="/">Main Page</Link>
-            </li>
-            <li className="mb-2">
-              <Link onClick={() => setModalShow(true)} to="#">
-                Profile
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link onClick={() => setModalShow(true)} to="/payment">
-                Payment
-              </Link>
-            </li>
+          <li className="mb-2">
+            <Link to="/dashboard">Grants Opportunity List</Link>
+          </li>
+          <li className="mb-2">
+            <Link to="/contactus">Contact us</Link>
+          </li>
+          <li className="mb-2">
+            <Link to="/">Main Page</Link>
+          </li>
+          <li className="mb-2">
+            <Link onClick={() => setModalShow(true)} to="/payment">
+              Payment
+            </Link>
+          </li>
         </ul>
       </div>
       <h1 style={{ textAlign: "center", marginTop: "3em" }}>
@@ -95,7 +90,7 @@ const Payment = () => {
             width: "80vw",
             height: "65vh",
             flexDirection: "column",
-            marginLeft: '13em'
+            marginLeft: "13em",
           }}
         >
           <Form

@@ -4,18 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { NavBar, Footer } from "../components";
 import { register } from "../redux/authentications/authActions";
 import { useDispatch, useSelector } from "react-redux";
-import { IoMdInformationCircleOutline } from "react-icons/io";
 import { BsCalendar2Date } from "react-icons/bs";
 import { BiWorld, BiUser } from "react-icons/bi";
-import { FaRegAddressBook } from 'react-icons/fa'
-import { BsTelephoneInboundFill,BsGenderAmbiguous } from "react-icons/bs";
+import { FaRegAddressBook } from "react-icons/fa";
+import { BsTelephoneInboundFill, BsGenderAmbiguous } from "react-icons/bs";
 import { AiOutlineFieldNumber } from "react-icons/ai";
 import { MdDriveFileRenameOutline } from "react-icons/md";
-
+import { getUser } from "../redux/profile/userActions";
 const Signup = () => {
   const navigate = useNavigate();
-  const { isAuth, error } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -28,6 +25,11 @@ const Signup = () => {
     address: "",
     dateOfBirth: "",
   });
+  const { isAuth, error } = useSelector((state) => state.auth);
+  const User = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const [isError, setIsError] = useState(error);
+
   const onChange = (e) => {
     setUser({
       ...user,
@@ -37,20 +39,21 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (error === true) {
+    if (isError) {
       alert("Invalid email or password");
+      setIsError(false);
     }
     if (user.email === "" || user.password === "") {
       alert("Please fill all the fields");
     }
-    console.log(user);
     register(dispatch, user);
   };
   useEffect(() => {
-    if (isAuth) {
+    if (isAuth && User) {
+      getUser(dispatch, User._id);
       navigate("/dashboard");
     }
-  }, [isAuth, navigate]);
+  }, [isAuth, navigate, User, dispatch]);
   return (
     <>
       <NavBar />
@@ -142,9 +145,7 @@ const Signup = () => {
                   <label className="form-label">Username</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <BiUser
-                        style={{ fontSize: "2em", color: "#6c757d" }}
-                      />
+                      <BiUser style={{ fontSize: "2em", color: "#6c757d" }} />
                     </span>
                     <input
                       placeholder="Enter Your username"
@@ -258,9 +259,7 @@ const Signup = () => {
                   <label className="form-label">Country</label>
                   <div className="input-group">
                     <span className="input-group-text">
-                      <BiWorld
-                        style={{ fontSize: "2em", color: "#6c757d" }}
-                      />
+                      <BiWorld style={{ fontSize: "2em", color: "#6c757d" }} />
                     </span>
                     <input
                       placeholder="Enter Your Country"
@@ -311,7 +310,10 @@ const Signup = () => {
               </div>
               <Row>
                 <Col xs={12} className="text-center mb-4">
-                  <Link to="/login" className="btn btn-white mb-2 mb-sm-0 me-1 px-4">
+                  <Link
+                    to="/login"
+                    className="btn btn-white mb-2 mb-sm-0 me-1 px-4"
+                  >
                     Login
                   </Link>
                 </Col>

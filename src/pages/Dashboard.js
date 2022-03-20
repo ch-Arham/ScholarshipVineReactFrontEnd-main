@@ -18,7 +18,6 @@ const Dashboard = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [modalShow, setModalShow] = React.useState(false);
   const [loading, setLoading] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
 
   const onToggleMenu = () => {
     setActiveLeftSide(!activeLeftSide);
@@ -135,9 +134,11 @@ const Dashboard = () => {
               <Link to="/">Main Page</Link>
             </li>
             <li className="mb-2">
-              <Link onClick={handleShow} to="#">
-                Profile
-              </Link>
+              {currentUser && (
+                <Link onClick={handleShow} to="#">
+                  Profile
+                </Link>
+              )}
             </li>
             <li className="mb-2">
               <Link onClick={() => setModalShow(true)} to="/payment">

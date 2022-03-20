@@ -1,14 +1,27 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { TopBar, Footer } from "../components/dashboard";
-import { Container, Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import emailjs from "emailjs-com";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../redux/profile/userActions";
+import { Modal, Button } from "react-bootstrap";
 
 const ContactUs = () => {
   const leftSide = useRef(null);
   const contentpage = useRef(null);
   const [activeLeftSide, setActiveLeftSide] = useState(true);
   const [activeMobLeftSide, setMobActiveLeftSide] = useState(false);
+  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isAuth, user } = useSelector((state) => state.auth);
+  const { profile } = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [modalShow, setModalShow] = React.useState(false);
   const onToggleMenu = () => {
     setActiveLeftSide(!activeLeftSide);
     if (!activeLeftSide) {
@@ -72,11 +85,73 @@ const ContactUs = () => {
   const handleChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
   };
+  React.useEffect(() => {
+    if (!isAuth) {
+      localStorage.removeItem("authToken");
+      navigate("/login");
+    }
+  }, [isAuth, navigate]);
+  useEffect(() => {
+    if (user) {
+      setLoading(true);
+      const userId = user._id;
+      getUser(dispatch, userId);
+      setCurrentUser(profile);
+      setLoading(false);
+    }
+  }, [user, profile, dispatch]);
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
 
   return (
     <>
       <div id="dashboard">
         <TopBar onToggleMenu={onToggleMenu} onToggleMobMenu={onToggleMobMenu} />
+        {currentUser && (
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Welcome {currentUser.fullName}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div>
+                <span className="bg-dark text-light p-1 m-1">E-Mail:</span>
+                {currentUser.email}
+              </div>
+              <br />
+              <div>
+                <span className="bg-dark text-light p-1 m-1">Gender:</span>
+                {currentUser.gender}
+              </div>
+              <br />
+              <div>
+                <span className="bg-dark text-light p-1 m-1">BVN:</span>
+                {currentUser.bvn}
+              </div>
+              <br />
+
+              <div>
+                <span className="bg-dark text-light p-1 m-1">Address:</span>
+                {currentUser.address}
+              </div>
+              <br />
+              <div>
+                <span className="bg-dark text-light p-1 m-1">DOB:</span>
+                {currentUser.dateOfBirth}
+              </div>
+              <br />
+              <div>
+                <span className="bg-dark text-light p-1 m-1">Country:</span>
+                {currentUser.country}
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )}
         <div className="left-side-menu" ref={leftSide}>
           <ul className="list-unstyled ms-4">
             <li className="mb-2">
@@ -87,6 +162,18 @@ const ContactUs = () => {
             </li>
             <li className="mb-2">
               <Link to="/">Main Page</Link>
+            </li>
+            <li className="mb-2">
+              {currentUser && (
+                <Link onClick={handleShow} to="#">
+                  Profile
+                </Link>
+              )}
+            </li>
+            <li className="mb-2">
+              <Link onClick={() => setModalShow(true)} to="/payment">
+                Payment
+              </Link>
             </li>
           </ul>
         </div>
