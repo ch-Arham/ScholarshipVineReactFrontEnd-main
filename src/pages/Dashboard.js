@@ -18,6 +18,7 @@ const Dashboard = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [modalShow, setModalShow] = React.useState(false);
   const [loading, setLoading] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   const onToggleMenu = () => {
     setActiveLeftSide(!activeLeftSide);
@@ -44,7 +45,10 @@ const Dashboard = () => {
       leftSide.current.classList.remove("hidemenu");
     }
   };
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useLayoutEffect(() => {
     window.addEventListener("resize", handleResize, false);
   }, []);
@@ -62,7 +66,7 @@ const Dashboard = () => {
       setCurrentUser(profile);
       setLoading(false);
     }
-  }, [profile, user, dispatch]);
+  }, [user, dispatch, profile]);
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
@@ -76,6 +80,50 @@ const Dashboard = () => {
       <div id="dashboard">
         <TopBar onToggleMenu={onToggleMenu} onToggleMobMenu={onToggleMobMenu} />
         <div className="left-side-menu" ref={leftSide}>
+          {currentUser && (
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Welcome {currentUser.fullName}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div>
+                  <span className="bg-dark text-light p-1 m-1">E-Mail:</span>
+                  {currentUser.email}
+                </div>
+                <br />
+                <div>
+                  <span className="bg-dark text-light p-1 m-1">Gender:</span>
+                  {currentUser.gender}
+                </div>
+                <br />
+                <div>
+                  <span className="bg-dark text-light p-1 m-1">BVN:</span>
+                  {currentUser.bvn}
+                </div>
+                <br />
+
+                <div>
+                  <span className="bg-dark text-light p-1 m-1">Address:</span>
+                  {currentUser.address}
+                </div>
+                <br />
+                <div>
+                  <span className="bg-dark text-light p-1 m-1">DOB:</span>
+                  {currentUser.dateOfBirth}
+                </div>
+                <br />
+                <div>
+                  <span className="bg-dark text-light p-1 m-1">Country:</span>
+                  {currentUser.country}
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          )}
           <ul className="list-unstyled ms-4">
             <li className="mb-2">
               <Link to="/dashboard">Grants Opportunity List</Link>
@@ -87,7 +135,7 @@ const Dashboard = () => {
               <Link to="/">Main Page</Link>
             </li>
             <li className="mb-2">
-              <Link onClick={() => setModalShow(true)} to="#">
+              <Link onClick={handleShow} to="#">
                 Profile
               </Link>
             </li>
@@ -98,30 +146,7 @@ const Dashboard = () => {
             </li>
           </ul>
         </div>
-        {modalShow &&
-          currentUser(
-            <Modal
-              size="lg"
-              aria-labelledby="contained-modal-title-vcenter"
-              centered
-            >
-              <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                  Name: {currentUser.fullName?.toUpperCase()}
-                </Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <h4>Email: {currentUser.email}</h4>
-                <h4>Gender: {currentUser.gender}</h4>
-                <h4>Address: {currentUser.address}</h4>
-                <h4>Country: {currentUser.country}</h4>
-                <h4>Date of Birth: {currentUser.dateOfBirth}</h4>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button onClick={setModalShow(false)}>Close</Button>
-              </Modal.Footer>
-            </Modal>
-          )}
+
         <div ref={contentpage} className="content-page">
           <div className="content">
             {/* <Container fluid> */}

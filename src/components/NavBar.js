@@ -74,7 +74,7 @@ const NavBar = () => {
               <Nav.Item as="li" className="mx-lg-1">
                 <Nav.Link
                   as={Link}
-                  to="/login"
+                  to="/dashboard"
                   className="text-dark link-demos"
                 >
                   Apply for a Scholarship
@@ -96,7 +96,7 @@ const NavBar = () => {
                   <Nav.Link
                     as={Button}
                     onClick={handleClick}
-                    className="text-dark link-demos"
+                    className="text-light px-3 link-demos"
                   >
                     Logout
                   </Nav.Link>
