@@ -159,7 +159,7 @@ router.post("/getuser", fetchuser, async (req, res) => {
 router.post("/forgotpassword", async (req, res) => {
   try {
     const email = req.body.email;
-  
+
     let user1 = await User.find({ email });
     if (!user1) {
       return res.json({ success: false, message: "Invalid Credentials" });
@@ -204,7 +204,7 @@ router.post("/forgotpassword", async (req, res) => {
         //password hashing
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(newPassword, salt);
-       
+
         user1 = await User.findByIdAndUpdate(
           user1[0]._id,
           { password: secPass },
@@ -213,12 +213,54 @@ router.post("/forgotpassword", async (req, res) => {
       }
     });
 
-    setTimeout(()=>{console.log(user1)},5000)
-    
+    setTimeout(() => {
+      console.log(user1);
+    }, 5000);
+
     res.json({ success: true });
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Internal Server Error, forgotPassword");
+  }
+});
+
+// Change Password
+router.post("/changepassword", fetchuser, async (req, res) => {
+  //oldPassword and newPassword
+  try {
+    const { email, oldPassword, newPassword } = req.body;
+    const id = req.user;
+
+    //To check email exists
+    let user = await User.findOne({ email });
+    let success;
+    if (!user) {
+      success = false;
+      return res.status(400).json({ error: "Provide Correct Credentials" });
+    }
+    // //verify password
+    const passwordCompare = await bcrypt.compare(oldPassword, user.password);
+    if (!passwordCompare) {
+      success = false;
+      return res
+        .status(400)
+        .json({ success, error: "Provice correct credentials" });
+    }
+
+    // //password hashing
+    const salt = await bcrypt.genSalt(10);
+    const secPass = await bcrypt.hash(newPassword, salt);
+
+    user = await User.findByIdAndUpdate(
+      user._id,
+      { password: secPass },
+      { new: true }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Internal Server Error");
   }
 });
 
